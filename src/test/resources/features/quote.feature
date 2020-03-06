@@ -55,12 +55,53 @@ Feature: Functional test
     When I type "Tester" into element with xpath "//input[@id='lastName']"
     And I click on element with xpath "//span[text()='Julia']"
     Then element with xpath "//input[@id='name']" should have attribute "value" as "JuliaTester"
-
+    
   @quate6
-  Scenario: date of birth
+  Scenario: Privacy Policy
+    Given I open url "https://skryabin.com/market/quote.html"
+    When I click on element with xpath "//input[@name='agreedToPrivacyPolicy']"
+    And I click on element with xpath "//button[@id='formSubmit']"
+    Then element with xpath "//label[@id='name-error']" should be enabled
+
+  @quate7
+  Scenario: Date of birth
     Given I open url "https://skryabin.com/market/quote.html"
     When I click on element with xpath "//input[@id='dateOfBirth']"
     And I click on element with xpath "//select[@*='selectMonth']/option[6]"
     And I click on element with xpath "//select[@*='selectYear']/option[@value='1990']"
     And I click on element with xpath "//td[@data-handler='selectDay']/a[text()='7']"
     Then element with xpath "//input[@id='dateOfBirth']" should have attribute "value" as "06/07/1990"
+    
+    
+    @quate8
+    Scenario: Form submit
+      Given I open url "https://skryabin.com/market/quote.html"
+      When I type "Julia" into element with xpath "//input[@name='username']"
+      And I type "tester@gmail.com" into element with xpath "//input[@name='email']"
+      And I type "tester" into element with xpath "//input[@id='password']"
+      And I type "Julia Tester" into element with xpath "//input[@id='name']"
+      And I click on element with xpath "//input[@name='agreedToPrivacyPolicy']"
+      And I click on element with xpath "//button[@id='formSubmit']"
+      Then element with xpath "//legend[@class='applicationResult']" should have text as "Submitted Application"
+      Then element with xpath "//div[@id='quotePageResult']" should contain text "Julia"
+      Then element with xpath "//div[@id='quotePageResult']" should contain text "tester@gmail.com"
+      Then element with xpath "//div[@id='quotePageResult']" should contain text "tester"
+      Then element with xpath "//div[@id='quotePageResult']" should contain text "Julia Tester"
+      Then element with xpath "//b[@name='agreedToPrivacyPolicy']" should contain text "thrue"
+      Then element with xpath "//b[@name='password']" should contain text "[entered]"
+
+
+
+
+
+
+
+
+
+
+
+    
+      
+      
+      
+
