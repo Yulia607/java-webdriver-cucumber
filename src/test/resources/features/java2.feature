@@ -10,6 +10,8 @@ Feature: Java Two Feature
     Scenario: Java Two - 7 day of the week
       Given I write java step
       And I print "7" th day of the week
+      And I print "7" th day of the week
+      
 
 
 
